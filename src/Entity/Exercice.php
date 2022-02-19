@@ -37,6 +37,10 @@ class Exercice
         $this->periodes = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->annee;
+    }
     public function getId(): ?int
     {
         return $this->id;

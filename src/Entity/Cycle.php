@@ -33,6 +33,11 @@ class Cycle
         $this->matieres = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->parcours;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

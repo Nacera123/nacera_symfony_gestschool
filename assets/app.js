@@ -11,4 +11,7 @@ import './styles/app.scss';
 // start the Stimulus application
 import './bootstrap';
 
+// importer le dossier js
+import './js/sidebar.js';
+
 

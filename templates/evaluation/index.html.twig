@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Evaluation index{% endblock %}
+
+{% block body %}
+    {{include("sidebar.html.twig")}}
+    <div class="home_content" id ="classes">  
+        
+        <h1>Evaluation index</h1>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Devoirs</th>
+                    <th>Examen</th>
+                    <th>Moyenne</th>
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for evaluation in evaluations %}
+                <tr>
+                    <td>{{ evaluation.id }}</td>
+                    <td>{{ evaluation.devoirs }}</td>
+                    <td>{{ evaluation.examen }}</td>
+                    <td>{{ evaluation.moyenne }}</td>
+                    <td>
+                        <a href="{{ path('evaluation_show', {'id': evaluation.id}) }}">show</a>
+                        <a href="{{ path('evaluation_edit', {'id': evaluation.id}) }}">edit</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <a href="{{ path('evaluation_new') }}">Create new</a>
+    </div>
+{% endblock %}

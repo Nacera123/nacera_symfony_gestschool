@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New ProfClasse{% endblock %}
+
+{% block body %}
+    <h1>Create new ProfClasse</h1>
+
+    {{ include('prof_classe/_form.html.twig') }}
+
+    <a href="{{ path('prof_classe_index') }}">back to list</a>
+{% endblock %}

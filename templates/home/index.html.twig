@@ -7,7 +7,7 @@
 
   <div class="b-example-divider"></div>
 
-  <header class="p-3 bg-dark text-white">
+  <header class="mix-black-50">
         <div class="container">
             <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
                 {# <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
@@ -15,9 +15,14 @@
                 </a> #}
 
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                    <li><a href="#" class="nav-link px-2 text-secondary">Home</a></li>
-                    <li><a href="#" class="nav-link px-2 text-white">Features</a></li>
-                    <li><a href="#" class="nav-link px-2 text-white">Pricing</a></li>
+                    <li><a href="/" class="nav-link px-2 text-secondary">Home</a></li>
+                    <li><a href="{{path('app_register')}}" class="nav-link px-2 text-white">Inscription</a></li>
+                    <li><a href="{{path('cycle_index')}}"class="nav-link px-2 text-white">cycle</a></li>
+                    <li><a href="{{path('classe_index')}}" class="nav-link px-2 text-white">Classe</a></li>
+                    <li><a href="{{path('utilisateur_index')}}" class="nav-link px-2 text-white">Utilisateur</a></li>
+                    <li><a href="{{path('eleve_index')}}" class="nav-link px-2 text-white">Eleve</a></li>
+                    <li><a href="{{path('type_utilisateur_index')}}" class="nav-link px-2 text-white">Type d'utilisateur</a></li>
+                    <li><a href="{{path('compte_index')}}" class="nav-link px-2 text-white">Compte</a></li>
                     <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
                     <li><a href="#" class="nav-link px-2 text-white">About</a></li>
                 </ul>
@@ -27,12 +32,15 @@
                 </form>
 
                 <div class="text-end">
-                    <button type="button" class="btn btn-outline-light me-2">Login</button>
-                    <button type="button" class="btn btn-warning">Sign-up</button>
+                    <a href="{{path('app_login')}}"><button type="button" class="btn btn-outline-warning me-2" id="btn-login">Login</button></a>
+                    {# <button type="button" class="btn btn-warning">Sign-up</button> #}
                 </div>
             </div>
         </div>
   </header>
+
+
+  {# <div class="toto"></div> #}
 
 {% endblock %}
 

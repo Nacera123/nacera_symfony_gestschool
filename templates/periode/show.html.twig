@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Periode{% endblock %}
+
+{% block body %}
+    <h1>Periode</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ periode.id }}</td>
+            </tr>
+            <tr>
+                <th>Trimestre</th>
+                <td>{{ periode.trimestre }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('periode_index') }}">back to list</a>
+
+    <a href="{{ path('periode_edit', {'id': periode.id}) }}">edit</a>
+
+    {{ include('periode/_delete_form.html.twig') }}
+{% endblock %}

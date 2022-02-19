@@ -1,8 +1,46 @@
 @import "custom";
+@import "sidebar";
 @import "~bootstrap/scss/bootstrap";
-@import "../node_modules/bootstrap/scss/bootstrap";
 
 
+
+.mix-black-50{
+
+
+    background-color: $color;
+    height: 60px;
+    margin-bottom: 50px;
+}
+
+#btn-login{
+
+    width:100px;
+}
+
+// .toto{
+
+//   width: 200px; height: 200px;
+//   margin-top: 200px;
+//   background-color: black;
+// }
+
+@for $i from 20 through 100 {
+    @if $i % 10 == 0 {
+      $percentage: $i*1%;
+      .darken-#{$i} {
+        background-color: darken($color, $percentage);
+      }
+      .lighten-#{$i} {
+        background-color: lighten($color, $percentage);
+      }
+      .mix-black-#{$i} {
+        background-color: mix(black, $color, $percentage);
+      }
+      .mix-white-#{$i} {
+        background-color: mix(white, $color, $percentage);
+      }
+    }
+  }
 
 
 

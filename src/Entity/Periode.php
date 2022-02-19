@@ -29,6 +29,12 @@ class Periode
         $this->evaluations = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->trimestre;
+        return $this->exercice;
+
+    }
     public function getId(): ?int
     {
         return $this->id;

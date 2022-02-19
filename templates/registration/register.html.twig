@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block body %}
+
+
+
+    {{include("sidebar.html.twig")}}
+
+
+    <div class="home_content" id ="classes">
+        {% block title %}Register{% endblock %}
+        {% for flashError in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+    {% endfor %}
+
+    {% for identifiant in app.flashes('identifiant') %}
+        <div class="alert alert-info" role="alert">{{ identifiant }}</div>
+    {% endfor %}
+
+    {% for password in app.flashes('password') %}
+        <div class="alert alert-info" role="alert">{{ password  }}</div>
+    {% endfor %}
+        <h1>Register</h1>
+
+            {# pour recuperer le formulaire d'enregistrement #}
+            {{form(registrationForm)}}
+    </div>
+
+{% endblock %}

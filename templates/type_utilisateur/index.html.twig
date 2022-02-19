@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}TypeUtilisateur index{% endblock %}
+
+{% block body %}
+    {{include("sidebar.html.twig")}}
+    <div class="home_content" id ="classes">
+        <h1>TypeUtilisateur index</h1>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Role</th>
+                    <th>Description</th>
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for type_utilisateur in type_utilisateurs %}
+                <tr>
+                    <td>{{ type_utilisateur.id }}</td>
+                    <td>{{ type_utilisateur.role }}</td>
+                    <td>{{ type_utilisateur.description }}</td>
+                    <td>
+                        <a href="{{ path('type_utilisateur_show', {'id': type_utilisateur.id}) }}">show</a>
+                        <a href="{{ path('type_utilisateur_edit', {'id': type_utilisateur.id}) }}">edit</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="4">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <a href="{{ path('type_utilisateur_new') }}">Create new</a>
+    </div>
+{% endblock %}

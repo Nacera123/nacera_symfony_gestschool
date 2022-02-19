@@ -24,6 +24,22 @@ security:
         main:
             lazy: true
             provider: app_user_provider
+            custom_authenticator: App\Security\LoginAuthenticator
+            logout:
+                path: app_logout
+                # where to redirect after logout
+                # target: app_any_route
+
+    role_hierarchy:
+            ROLE_Famille: ROLE_Famille
+            ROLE_Enseignant: Enseignant
+            ROLE_Gestionnaire_Ecole: Gestionnaire_Ecole
+            ROLE_Administrateur: Administrateur
+
+    access_control:
+        - { path: ^/classe, roles: ROLE_Famille }
+        # - { path: ^/profile, roles: ROLE_USER }
+            # custom_authenticator: App\Security\LoginFormAuthenticator
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
@@ -33,9 +49,7 @@ security:
 
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
-    access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+
 
 when@test:
     security:

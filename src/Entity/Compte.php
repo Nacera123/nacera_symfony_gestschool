@@ -4,9 +4,13 @@ namespace App\Entity;
 
 use App\Repository\CompteRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
+/**
+ * @UniqueEntity(fields={"identifiant"}, message="There is already an account with this identifiant")
+ */
 #[ORM\Entity(repositoryClass: CompteRepository::class)]
 class Compte implements UserInterface, PasswordAuthenticatedUserInterface
 {
@@ -27,6 +31,14 @@ class Compte implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToOne(mappedBy: 'compte', targetEntity: Utilisateur::class, cascade: ['persist', 'remove'])]
     private $utilisateur;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isVerified = false;
+    public function __toString()
+    {
+        return $this->identifiant;
+    }
     public function getId(): ?int
     {
         return $this->id;
@@ -115,6 +127,18 @@ class Compte implements UserInterface, PasswordAuthenticatedUserInterface
         }
 
         $this->utilisateur = $utilisateur;
+
+        return $this;
+    }
+
+    public function isVerified(): bool
+    {
+        return $this->isVerified;
+    }
+
+    public function setIsVerified(bool $isVerified): self
+    {
+        $this->isVerified = $isVerified;
 
         return $this;
     }

@@ -15,4 +15,13 @@ class HomeController extends AbstractController
             'controller_name' => 'HomeController',
         ]);
     }
+
+    #[Route('/sidebar', name: 'sidebar')]
+    public function sidebar(): Response
+    {
+        return $this->render('sidebar.html.twig', [
+            'controller_name' => 'HomeController',
+        ]
+        );
+    }
 }

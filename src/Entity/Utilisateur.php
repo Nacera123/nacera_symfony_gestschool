@@ -33,10 +33,6 @@ class Utilisateur
     #[ORM\OneToOne(inversedBy: 'utilisateur', targetEntity: Compte::class, cascade: ['persist', 'remove'])]
     private $compte;
 
-    #[ORM\OneToOne(inversedBy: 'utilisateur', targetEntity: TypeUtilisateur::class, cascade: ['persist', 'remove'])]
-    private $typeutilisateur;
-
-
     #[ORM\OneToMany(mappedBy: 'papa', targetEntity: Eleve::class)]
     private $eleves;
 
@@ -46,11 +42,21 @@ class Utilisateur
     #[ORM\OneToMany(mappedBy: 'utilisateur', targetEntity: ProfClasse::class)]
     private $profClasses;
 
+    #[ORM\ManyToOne(targetEntity: TypeUtilisateur::class, inversedBy: 'utilisateurs')]
+    private $typeutilisateur;
+
     public function __construct()
     {
         $this->eleves = new ArrayCollection();
         $this->elevesm = new ArrayCollection();
         $this->profClasses = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->email;
+        return $this->nom;
+        
     }
 
     public function getId(): ?int
@@ -126,18 +132,6 @@ class Utilisateur
     public function setCompte(?Compte $compte): self
     {
         $this->compte = $compte;
-
-        return $this;
-    }
-
-    public function getTypeutilisateur(): ?TypeUtilisateur
-    {
-        return $this->typeutilisateur;
-    }
-
-    public function setTypeutilisateur(?TypeUtilisateur $typeutilisateur): self
-    {
-        $this->typeutilisateur = $typeutilisateur;
 
         return $this;
     }
@@ -230,6 +224,18 @@ class Utilisateur
                 $profClass->setUtilisateur(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getTypeutilisateur(): ?TypeUtilisateur
+    {
+        return $this->typeutilisateur;
+    }
+
+    public function setTypeutilisateur(?TypeUtilisateur $typeutilisateur): self
+    {
+        $this->typeutilisateur = $typeutilisateur;
 
         return $this;
     }

@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ProfClasse index{% endblock %}
+
+{% block body %}
+    {{include("sidebar.html.twig")}}
+
+    <div class="home_content" id ="classes">
+        <h1>ProfClasse index</h1>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for prof_classe in prof_classes %}
+                <tr>
+                    <td>{{ prof_classe.id }}</td>
+                    <td>
+                        <a href="{{ path('prof_classe_show', {'id': prof_classe.id}) }}">show</a>
+                        <a href="{{ path('prof_classe_edit', {'id': prof_classe.id}) }}">edit</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="2">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <a href="{{ path('prof_classe_new') }}">Create new</a>
+    </div>
+{% endblock %}
