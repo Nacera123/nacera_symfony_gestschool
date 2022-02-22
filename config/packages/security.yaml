@@ -31,13 +31,15 @@ security:
                 # target: app_any_route
 
     role_hierarchy:
-            ROLE_Famille: ROLE_Famille
-            ROLE_Enseignant: Enseignant
-            ROLE_Gestionnaire_Ecole: Gestionnaire_Ecole
-            ROLE_Administrateur: Administrateur
+            ROLE_USER:
+            ROLE_Famille: 
+            ROLE_Enseignant:
+            ROLE_Gestionnaire_Ecole: 
+            ROLE_Administrateur:
 
     access_control:
-        - { path: ^/classe, roles: ROLE_Famille }
+        - { path: ^/classe, roles: [ROLE_Famille, ROLE_Gestionnaire_Ecole] }
+        - { path: ^/eleve, roles: ROLE_Gestionnaire_Ecole }
         # - { path: ^/profile, roles: ROLE_USER }
             # custom_authenticator: App\Security\LoginFormAuthenticator
 

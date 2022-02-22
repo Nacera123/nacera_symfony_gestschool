@@ -416,6 +416,7 @@ body{
 
 .drop_profile{
     display:none;
+    margin-top:0px;
 }
 #btn-login:hover .drop_profile{
     display:block;
@@ -428,6 +429,7 @@ body{
 #btn-login .drop_profile .profile:hover {
 
     background-color: #ddd;
+    margin-top:0px;
 }
 
 .drop_profile .profile{
@@ -495,8 +497,19 @@ body{
 
 
 #classes{
-    margin-top: 300px;
+    // margin-top: 50px;
 }
 
+
+
+
+
+
+
+
+
+
+
+//...........................REGISTRATION................//@at-root
 
 

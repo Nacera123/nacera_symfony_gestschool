@@ -19,9 +19,22 @@ class HomeController extends AbstractController
     #[Route('/sidebar', name: 'sidebar')]
     public function sidebar(): Response
     {
-        return $this->render('sidebar.html.twig', [
-            'controller_name' => 'HomeController',
-        ]
+        return $this->render(
+            'sidebar.html.twig',
+            [
+                'controller_name' => 'HomeController',
+            ]
+        );
+    }
+
+    #[Route('/toto', name: 'toto')]
+    public function toto(): Response
+    {
+        return $this->render(
+            'toto.html.twig',
+            [
+                'controller_name' => 'HomeController',
+            ]
         );
     }
 }

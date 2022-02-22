@@ -45,7 +45,10 @@ class RegistrationController extends AbstractController
             //generer un compte depuis l'inscription utilisateur: il sera renvoyé a l'utilisateur
             $identifiant=$this->generateRandomString(6);
             $password=$this->generateRandomString(6);
-            // $roles=$this->typeutilisateur;
+            $user->getTypeutilisateur()->setBdRole("ROLE_".$user->getTypeutilisateur()->getRole());
+
+            $roles[] = $user->getTypeutilisateur()->getBdRole();
+            // dd($roles);
             $account=new Compte();
             $account->setIdentifiant(
                 $identifiant 
@@ -58,9 +61,9 @@ class RegistrationController extends AbstractController
                     $password
                 )
             );
-            // $account->setroles(
-            //     $roles
-            // );
+            $account->setRoles(
+                $roles
+            );
             
             $account->setUtilisateur(
                 $user 
@@ -91,9 +94,10 @@ class RegistrationController extends AbstractController
 
             return $this->redirectToRoute('app_register');
         }
-
+        // dd($form->createView());
         return $this->render('registration/register.html.twig', [
             'registrationForm' => $form->createView(),
+            
         ]);
     }
 

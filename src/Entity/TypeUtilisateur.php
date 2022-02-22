@@ -24,11 +24,18 @@ class TypeUtilisateur
     #[ORM\OneToMany(mappedBy: 'typeutilisateur', targetEntity: Utilisateur::class)]
     private $utilisateurs;
 
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $bd_role;
+
     public function __construct()
     {
         $this->utilisateurs = new ArrayCollection();
     }
-
+    // pour permettre de choisir le type utilisateur
+    public function __toString()
+    {
+        return $this->role;
+    }
 
     public function getId(): ?int
     {
@@ -60,11 +67,7 @@ class TypeUtilisateur
     }
 
 
-    // pour permettre de choisir le type utilisateur
-    public function __toString()
-    {
-        return $this->role;
-    }
+
 
     /**
      * @return Collection|Utilisateur[]
@@ -92,6 +95,18 @@ class TypeUtilisateur
                 $utilisateur->setTypeutilisateur(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getBdRole(): ?string
+    {
+        return $this->bd_role;
+    }
+
+    public function setBdRole(?string $bd_role): self
+    {
+        $this->bd_role = $bd_role;
 
         return $this;
     }

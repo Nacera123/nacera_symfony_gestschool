@@ -22,6 +22,15 @@ class TypeUtilisateurController extends AbstractController
         ]);
     }
 
+    public function afficherParent(TypeUtilisateurRepository $typeUtilisateurRepository)
+    {
+        $result_query = $typeUtilisateurRepository->getParent();
+
+        $this->render('home/hd.html.twig', [
+            'parent' => $result_query
+        ]);
+    }
+
     #[Route('/new', name: 'type_utilisateur_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -71,7 +80,7 @@ class TypeUtilisateurController extends AbstractController
     #[Route('/{id}', name: 'type_utilisateur_delete', methods: ['POST'])]
     public function delete(Request $request, TypeUtilisateur $typeUtilisateur, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$typeUtilisateur->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $typeUtilisateur->getId(), $request->request->get('_token'))) {
             $entityManager->remove($typeUtilisateur);
             $entityManager->flush();
         }

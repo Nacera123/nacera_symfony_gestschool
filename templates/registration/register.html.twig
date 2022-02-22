@@ -1,31 +1,225 @@
 {% extends 'base.html.twig' %}
 
 
-
 {% block body %}
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Document</title>
+		<!--boxicons CDN -->
+		<link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+	</head>
 
 
+	{{include("sidebar.html.twig")}}
 
-    {{include("sidebar.html.twig")}}
+
+	<div class="home_content" style="margin-top:100px; ">
+
+		{% for flashError in app.flashes('verify_email_error') %}
+			<div class="alert alert-danger" role="alert">{{ flashError }}</div>
+		{% endfor %}
+
+		{% for identifiant in app.flashes('identifiant') %}
+			<div class="alert alert-info" role="alert">{{ identifiant }}</div>
+		{% endfor %}
+
+		{% for password in app.flashes('password') %}
+			<div class="alert alert-info" role="alert">{{ password  }}</div>
+		{% endfor %}
 
 
-    <div class="home_content" id ="classes">
-        {% block title %}Register{% endblock %}
-        {% for flashError in app.flashes('verify_email_error') %}
-        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
-    {% endfor %}
+		{# <form method="post">
+		<section class="h-100 h-custom gradient-custom-2">
+		<div class="container py-5 h-100">
+		<div class="row d-flex justify-content-center align-items-center h-100">
+		<div class="col-12">
+		<div class="card card-registration card-registration-2" style="border-radius: 15px;">
+		<div class="card-body p-0">
+		<div class="row g-0">
+		<div class="col-lg-6">
+		<div class="p-5">
+		<h1 class="fw-normal mb-5" style="color: rgb(44, 137, 150);">General Infomation</h1>
+		
+		<div class="row">
+		<div class="col-md-6 mb-4 pb-2">
+		
+		<div class="form-outline">
+		<i class="fa-solid fa-address-book fa-lg me-3 fa-fw"></i>
+		<label class="form-label" for="{{registrationForm.nom.vars.id}}" >Nom</label>
+		<input type="text" id="{{registrationForm.nom.vars.id}}" class="form-control form-control-lg" name="{{registrationForm.nom.vars.full_name}}"/>
+		</div>
+		
+		</div>
+		<div class="col-md-6 mb-4 pb-2">
+		
+		<div class="form-outline">
+		<i class="fa-solid fa-address-book fa-lg me-3 fa-fw"></i>
+		<label class="form-label" for="{{registrationForm.prenom.vars.id}}">Prenom</label>
+		<input type="text" id="{{registrationForm.prenom.vars.id}}" class="form-control form-control-lg" name="{{registrationForm.prenom.vars.full_name}}"/>
+		</div>
+		
+		</div>
+		</div>
+		<div class="mb-4 pb-2">
+		<div class="form-outline">
+		<i class="fa-solid fa-square-phone-flip fa-lg me-3 fa-fw"></i>
+		<label class="form-label" for="{{registrationForm.telephone.vars.id}}">Numero de Telephone</label>
+		<input type="text" id="{{registrationForm.telephone.vars.id}}" class="form-control form-control-lg" name="{{registrationForm.telephone.vars.full_name}}"/>
+		</div>
+		</div>
+		<div class="form-check d-flex justify-content-start mb-4 pb-3">
+		<input
+		class="form-check-input me-3"
+		type="checkbox"
+		value=""
+		id="form2Example3c"
+		/>
+		<label class="form-check-label text-black" for="form2Example3">
+		I do accept the <a href="#!" class="text-black"><u>Terms and Conditions</u></a> of your site.
+		</label>
+		
+		</div>
+		<button type="submit" class="btn btn-light btn-lg" data-mdb-ripple-color="dark">Register</button>
+		
+		</div>
+		</div>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<div class="col-lg-6 bg-indigo text-white">
+		<div class="p-5">
+		<h3 class="fw-normal mb-5">Contact Details</h3>
+		<div class="mb-4">
+		<div class="form-outline form-white">
+		<i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+		<label class="form-label" for="{{registrationForm.email.vars.id}}"> Email</label>
+		<input type="email" id="{{registrationForm.email.vars.id}}" class="form-control form-control-lg" name="{{registrationForm.email.vars.full_name}}" />
+		</div>
+		</div>
+		
+		<div class="mb-4 pb-2">
+		<div class="form-outline form-white">
+		<i class="fa-solid fa-house-laptop fa-lg me-3 fa-fw"></i>
+		<label class="form-label" for="{{registrationForm.adresse.vars.id}}">Adresse</label>
+		<input type="text" id="{{registrationForm.adresse.vars.id}}" class="form-control form-control-lg" name="{{registrationForm.adresse.vars.full_name}}"/>
+		</div>
+		</div>
+		
+		
+		<div class="row">
+		<div class="col-md-5 mb-4 pb-2">
+		
+		<div class="form-outline form-white">
+		<label class="form-label" for="form3Examplea4"> Code Postal</label>
+		<input type="number" id="form3Examplea4" class="form-control form-control-lg" name="code_postal" />
+		</div>
+		
+		</div>
+		<div class="col-md-7 mb-4 pb-2">
+		
+		<div class="form-outline form-white">
+		<label class="form-label" for="form3Examplea5">Ville</label>
+		<input type="text" id="form3Examplea5" class="form-control form-control-lg" />
+		</div>
+		
+		</div>
+		</div>
+		<div class="col-md-6 mb-4">
+		{{form_row(registrationForm.typeutilisateur)}}
+		
+		#}
 
-    {% for identifiant in app.flashes('identifiant') %}
-        <div class="alert alert-info" role="alert">{{ identifiant }}</div>
-    {% endfor %}
 
-    {% for password in app.flashes('password') %}
-        <div class="alert alert-info" role="alert">{{ password  }}</div>
-    {% endfor %}
-        <h1>Register</h1>
+		{# {% for %}
+		<select class="select" style ="width:200px">
+		<option value="1" disabled name="{{typeutilisateur.full_name}}">{{ type_utilisateur.role }}</option>
+		<option value="{{}}" name="typeutilisateur">{{type_utilisateur.vars.name}}</option> #}
+		{# <option value="3" name="typeutilisateur"></option>
+		<option value="4" name="typeutilisateur"></option> #}
+		{# </select>
+		{% endfor %} #}
 
-            {# pour recuperer le formulaire d'enregistrement #}
-            {{form(registrationForm)}}
-    </div>
 
+		{# </div>
+		{{form_row(registrationForm._token)}}
+		
+		</div>
+		</div>
+		</div>
+		</div>
+		</div>
+		</div>
+		</div>
+		</section> #}
+
+
+			<div class="register_contenent"> <div class="div_register">
+				<form class="row g-3" method="post">
+					<div class="col-md-6">
+						<i class="fa-solid fa-address-book fa-lg me-3 fa-fw"></i>
+						<label for="{{registrationForm.nom.vars.id}}">Nom</label>
+						<input type="text" class="form-control" id="{{registrationForm.nom.vars.id}}" name="{{registrationForm.nom.vars.full_name}}"/>
+					</div>
+					<div class="col-md-6">
+						<i class="fa-solid fa-address-book fa-lg me-3 fa-fw"></i>
+						<label for="{{registrationForm.prenom.vars.id}}">Prenom</label>
+						<input type="text" class="form-control" id="{{registrationForm.prenom.vars.id}}" name="{{registrationForm.prenom.vars.full_name}}"/>
+					</div>
+					<div class="col-md-6">
+						<i class="fa-solid fa-square-phone-flip fa-lg me-3 fa-fw"></i>
+						<label class="form-label" for="{{registrationForm.telephone.vars.id}}">Numero de Telephone</label>
+						<input type="text" class="form-control" id="{{registrationForm.telephone.vars.id}}" name="{{registrationForm.telephone.vars.full_name}}"/>
+					</div>
+					<div class="col-md-6">
+						<i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+						<label class="form-label" for="{{registrationForm.email.vars.id}}">
+							Email</label>
+						<input type="email" id="{{registrationForm.email.vars.id}}" class="form-control" name="{{registrationForm.email.vars.full_name}}"/>
+					</div>
+					<div class="col-12">
+						<i class="fa-solid fa-house-laptop fa-lg me-3 fa-fw"></i>
+						<label class="form-label" for="{{registrationForm.adresse.vars.id}}">Adresse</label>
+						<input type="text" id="{{registrationForm.adresse.vars.id}}" class="form-control" name="{{registrationForm.adresse.vars.full_name}}"/>
+					</div>
+
+					<div class="col-md-6">
+						<label for="inputCity" class="form-label">Code Postal</label>
+						<input type="text" class="form-control" id="inputCity">
+					</div>
+
+
+					<div class="col-md-4">
+						<label for="inputState" class="form-label"></label>
+
+						{{form_row(registrationForm.typeutilisateur)}}
+
+
+					</div>
+					<div class="col-12">
+						<div class="form-check">
+							<input class="form-check-input" type="checkbox" id="gridCheck">
+							<label class="form-check-label" for="gridCheck">
+								Check me out
+							</label>
+						</div>
+					</div>
+					<div class="col-12" style="margin-right:auto; margin-left:auto; width: 100px;">
+						<button type="submit" class="btn btn-primary">Sign in</button>
+					</div>
+				</form>
+			</div>
+		</div>
+
+
+	</div>
 {% endblock %}

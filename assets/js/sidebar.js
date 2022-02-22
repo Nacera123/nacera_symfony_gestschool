@@ -8,14 +8,14 @@ let searchBtn = document.querySelector('#isearch');
 
 
 
-btn.onclick = function(){
+btn.onclick = function () {
 
     sidebar.classList.toggle("active");
 
     // alert('bla bla'); 
 }
 
-searchBtn.onclick = function(){
+searchBtn.onclick = function () {
 
     sidebar.classList.toggle("active");
 
@@ -23,3 +23,17 @@ searchBtn.onclick = function(){
 }
 
 
+var myCollapsible = document.getElementById('myCollapsible')
+myCollapsible.addEventListener('hidden.bs.collapse', function () {
+    // do something...
+})
+
+
+function myFunction() {
+    var x = document.getElementById("myDIV");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}
