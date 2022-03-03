@@ -31,6 +31,9 @@ class Evaluation
     #[ORM\ManyToOne(targetEntity: Eleve::class, inversedBy: 'evaluations')]
     private $eleve;
 
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $appreciation;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -104,6 +107,18 @@ class Evaluation
     public function setEleve(?Eleve $eleve): self
     {
         $this->eleve = $eleve;
+
+        return $this;
+    }
+
+    public function getAppreciation(): ?string
+    {
+        return $this->appreciation;
+    }
+
+    public function setAppreciation(?string $appreciation): self
+    {
+        $this->appreciation = $appreciation;
 
         return $this;
     }

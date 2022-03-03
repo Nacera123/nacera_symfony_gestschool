@@ -1,4 +1,117 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+{# {{ form_start(form) }}
+{{ form_widget(form) }}
+
+<button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }} #}
+{% extends 'base.html.twig' %}
+{# <div class="form-check">
+	<input class="form-check-input" type="checkbox" id="gridCheck">
+	<label class="form-check-label" for="gridCheck">
+		Check me out
+	</label>
+</div>#}
+
+{% block title %}New Utilisateur
+{% endblock %}
+
+{% block body %}
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Document</title>
+		<!--boxicons CDN -->
+		<link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+	</head>
+
+
+	<style>
+		body {
+			background-color: #eee;
+		}
+	</style>
+
+	{{include("sidebar.html.twig")}}
+	<div class="home_content" style="margin-top:200px; height: 100%;overflow-x: scroll;">
+
+		<h1>Create new Utilisateur</h1>
+		{% for flashError in app.flashes('verify_email_error') %}
+			<div class="alert alert-danger" role="alert">{{ flashError }}</div>
+		{% endfor %}
+
+		{% for identifiant in app.flashes('identifiant') %}
+			<div class="alert alert-info" role="alert">
+				Identifiant :
+				{{ identifiant }}</div>
+		{% endfor %}
+
+		{% for password in app.flashes('password') %}
+			<div class="alert alert-info" role="alert">Mot de Passe :
+				{{ password  }}</div>
+		{% endfor %}
+
+
+		<center>
+
+			<a href="{{ path('utilisateur_index') }}">
+				<button class="btn btn-outline-secondary" style=" width:900px;height:70px;margin-right:auto; margin-left:auto; color:black;">
+					<h1>back to list</h1>
+				</button>
+			</a>
+
+		</center>
+
+		<div class="register_contenent">
+			<div class="div_register">
+				<form class="row g-3" method="post">
+					<div class="col-md-6">
+						<i class="fa-solid fa-address-book fa-lg me-3 fa-fw"></i>
+						<label for="{{titi.nom.vars.id}}">Nom</label>
+						<input type="text" class="form-control" id="{{titi.nom.vars.id}}" name="{{titi.nom.vars.full_name}}"/>
+					</div>
+					<div class="col-md-6">
+						<i class="fa-solid fa-address-book fa-lg me-3 fa-fw"></i>
+						<label for="{{titi.prenom.vars.id}}">Prenom</label>
+						<input type="text" class="form-control" id="{{titi.prenom.vars.id}}" name="{{titi.prenom.vars.full_name}}"/>
+					</div>
+					<div class="col-md-6">
+						<i class="fa-solid fa-square-phone-flip fa-lg me-3 fa-fw"></i>
+						<label class="form-label" for="{{titi.telephone.vars.id}}">Numero de Telephone</label>
+						<input type="text" class="form-control" id="{{titi.telephone.vars.id}}" name="{{titi.telephone.vars.full_name}}"/>
+					</div>
+					<div class="col-md-6">
+						<i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+						<label class="form-label" for="{{titi.email.vars.id}}">
+							Email</label>
+						<input type="email" id="{{titi.email.vars.id}}" class="form-control" name="{{titi.email.vars.full_name}}"/>
+					</div>
+					<div class="col-12">
+						<i class="fa-solid fa-house-laptop fa-lg me-3 fa-fw"></i>
+						<label class="form-label" for="{{titi.adresse.vars.id}}">Adresse</label>
+						<input type="text" id="{{titi.adresse.vars.id}}" class="form-control" name="{{titi.adresse.vars.full_name}}"/>
+					</div>
+
+					<div class="col-md-6">
+						<label for="{{titi.cp.vars.id}}" class="form-label">Code Postal</label>
+						<input type="text" class="form-control" id="{{titi.cp.vars.id}} name=" "{{titi.cp.vars.id}}">
+					</div>
+
+
+					<div class="col-md-4">
+						<label for="inputState" class="form-label"></label>
+
+						{{form_row(titi.typeutilisateur)}}
+						{{form_row(titi._token)}}
+
+					</div>
+					<button type="submit" class="btn btn-outline-primary" style="width:200px; margin-left:auto;margin-right:auto;height:55px;">Register</button>
+				</form>
+			</div>
+		</div>
+
+
+	</div>
+{% endblock %}

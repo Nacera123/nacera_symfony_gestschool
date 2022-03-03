@@ -1,37 +1,57 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}ProfClasse index{% endblock %}
+{% block title %}ProfClasse index
+{% endblock %}
 
 {% block body %}
-    {{include("sidebar.html.twig")}}
+	{{include("sidebar.html.twig")}}
+	<style>
+		body {
+			background-color: #eee;
+		}
+	</style>
 
-    <div class="home_content" id ="classes">
-        <h1>ProfClasse index</h1>
+	<div class="home_content" style="margin-top:200px; height: 100%;">
+		<h1>ProfClasse index</h1>
 
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>actions</th>
-                </tr>
-            </thead>
-            <tbody>
-            {% for prof_classe in prof_classes %}
-                <tr>
-                    <td>{{ prof_classe.id }}</td>
-                    <td>
-                        <a href="{{ path('prof_classe_show', {'id': prof_classe.id}) }}">show</a>
-                        <a href="{{ path('prof_classe_edit', {'id': prof_classe.id}) }}">edit</a>
-                    </td>
-                </tr>
-            {% else %}
-                <tr>
-                    <td colspan="2">no records found</td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
+		<table class="table table-bordered table-white" style="background-color:#fff;width:1000px; border:solid 1px; margin-right:auto; margin-left:auto;">
+			<thead>
 
-        <a href="{{ path('prof_classe_new') }}">Create new</a>
-    </div>
+
+				<div style="width:1000px;height:80px;margin-right:auto; margin-left:auto">
+					<center>
+
+						<a href="{{ path('prof_classe_new') }}">
+							<button class="btn btn-outline-secondary" style="color:black; width:1000px;height:80px; margin-right:auto; margin-left:auto;">
+								<h1>Create new</h1>
+							</button>
+						</a>
+
+					</center>
+				</div>
+			</thead>
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th style="width:250px;">actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for prof_classe in prof_classes %}
+					<tr>
+						<td>{{ prof_classe.id }}</td>
+						<td>
+							<a href="{{ path('prof_classe_show', {'id': prof_classe.id}) }}">show</a>
+							<a href="{{ path('prof_classe_edit', {'id': prof_classe.id}) }}">edit</a>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="2">no records found</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+
+	</div>
 {% endblock %}

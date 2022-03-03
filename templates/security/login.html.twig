@@ -17,19 +17,18 @@
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 	</head>
 
-
 	<form method="post">
 		{% if error %}
 			<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
 		{% endif %}
 		{# 
-						        {% if app.user %}
-						            <div class="mb-3">
-						                You are logged in as
-						                {{ app.user.username }},
-						                <a href="{{ path('app_logout') }}">Logout</a>
-						            </div>
-						        {% endif %} #}
+															{% if app.user %}
+																<div class="mb-3">
+																	You are logged in as
+																	{{ app.user.username }},
+																	<a href="{{ path('app_logout') }}">Logout</a>
+																</div>
+															{% endif %} #}
 
 
 		<section class="vh-100" style="background-color: #eee;">
@@ -38,48 +37,48 @@
 					<div class="col-lg-12 col-xl-11">
 						<div class="card text-black" style="border-radius: 25px;">
 							<div class="card-body p-md-5">
-								<div class="row justify-content-center">
-									<div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+								<div class="row justify-content-center" style="background-color: #fff;">
+									<div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1" style="background-color: #fff;">
 
-										<p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
+										<p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4" style="background-color: #fff;">Sign up</p>
 
-										<div class="mx-1 mx-md-4">
+										<div class="mx-1 mx-md-4" style="background-color: #fff;">
 
-											<div class="d-flex flex-row align-items-center mb-4">
+											<div class="d-flex flex-row align-items-center mb-4" style="background-color: #fff;">
 												<i class="fas fa-user fa-lg me-3 fa-fw"></i>
-												<div class="form-outline flex-fill mb-0">
+												<div class="form-outline flex-fill mb-0" style="background-color: #fff;">
 													<input type="text" value="{{ last_username }}" name="identifiant" id="inputIdentifiant" class="form-control"/>
-													<label class="form-label" for="inputIdentifiant">Identifiant</label>
+													<label class="form-label" for="inputIdentifiant" style="background-color: #fff;">Identifiant</label>
 												</div>
 											</div>
 
-											<div class="d-flex flex-row align-items-center mb-4">
+											<div class="d-flex flex-row align-items-center mb-4" style="background-color: #fff;">
 												<i class="fas fa-lock fa-lg me-3 fa-fw"></i>
-												<div class="form-outline flex-fill mb-0">
+												<div class="form-outline flex-fill mb-0" style="background-color: #fff;">
 
 													<input type="password" name="password" id="inputPassword" class="form-control"/>
-													<label class="form-label" for="inputPassword">Mot de passe</label>
+													<label class="form-label" for="inputPassword" style="background-color: #fff;">Mot de passe</label>
 												</div>
 											</div>
 
 
-											<div class="form-check d-flex justify-content-center mb-5">
+											<div class="form-check d-flex justify-content-center mb-5" style="background-color: #fff;">
 												<input class="form-check-input me-2" type="checkbox" value="" id="form2Example3c"/>
-												<label class="form-check-label" for="form2Example3">
+												<label class="form-check-label" for="form2Example3" style="background-color: #fff;">
 													I agree all statements in
-													<a href="#!">Terms of service</a>
+													<a href="#!" style="background-color: #fff;">Terms of service</a>
 												</label>
 											</div>
 											<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
-											<div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+											<div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4" style="background-color: #fff;">
 												<button type="submit" class="btn btn-primary btn-lg">Sign in</button>
 											</div>
 
 										</div>
 
 									</div>
-									<div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+									<div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2" style="background-color: #eee;">
 
 										<img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp" class="img-fluid" alt="Sample image">
 

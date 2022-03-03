@@ -39,7 +39,7 @@ security:
 
     access_control:
         - { path: ^/classe, roles: [ROLE_Famille, ROLE_Gestionnaire_Ecole] }
-        - { path: ^/eleve, roles: ROLE_Gestionnaire_Ecole }
+        - { path: ^/eleve, roles: [ROLE_Gestionnaire_Ecole, ROLE_Administrateur] }
         # - { path: ^/profile, roles: ROLE_USER }
             # custom_authenticator: App\Security\LoginFormAuthenticator
 

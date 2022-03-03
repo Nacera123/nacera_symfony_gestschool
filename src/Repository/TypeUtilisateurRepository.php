@@ -43,13 +43,19 @@ class TypeUtilisateurRepository extends ServiceEntityRepository
         return $query;
     }
 
-    public function getAdministrateur()
+    public function getAdministrateurType()
     {
         $query = $this->createQueryBuilder('t');
-        $query->where($query->expr()->in('t.role',  ["Gestionnaire_Ecole", "Administrateur"]));
+        $query->where($query->expr()->notIn('t.role', ["Famille", "Enseignant"]));
 
         return $query;
     }
+
+    // public function show_prof()
+    // {
+    //     $query = $this->createQueryBuilder('p');
+    //     $query->where($query->expr()->notIn('p.role', ["Famille", "Gestionnaire_Ecole", "Administrateur"]));
+    // }
 
     // /**
     //  * @return TypeUtilisateur[] Returns an array of TypeUtilisateur objects

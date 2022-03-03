@@ -2,8 +2,11 @@
 
 namespace App\Repository;
 
-use App\Entity\ProfClasse;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+
+use App\Entity\TypeUtilisateur;
+use App\Entity\Utilisateur;
+use App\Entity\ProfClasse;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -17,6 +20,12 @@ class ProfClasseRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, ProfClasse::class);
+    }
+
+    public function show_prof()
+    {
+        $query = $this->createQueryBuilder('p');
+        $query->where($query->expr()->notIn('p.role', ["Famille", "Gestionnaire_Ecole", "Administrateur"]));
     }
 
     // /**

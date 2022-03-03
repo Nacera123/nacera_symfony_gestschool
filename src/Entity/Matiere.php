@@ -24,6 +24,10 @@ class Matiere
     #[ORM\OneToMany(mappedBy: 'matiere', targetEntity: Evaluation::class)]
     private $evaluations;
 
+    public function __toString()
+    {
+        return $this->nom;
+    }
     public function __construct()
     {
         $this->evaluations = new ArrayCollection();

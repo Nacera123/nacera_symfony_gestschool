@@ -45,6 +45,9 @@ class Utilisateur
     #[ORM\ManyToOne(targetEntity: TypeUtilisateur::class, inversedBy: 'utilisateurs')]
     private $typeutilisateur;
 
+    #[ORM\Column(type: 'integer', nullable: true)]
+    private $cp;
+
     public function __construct()
     {
         $this->eleves = new ArrayCollection();
@@ -236,6 +239,18 @@ class Utilisateur
     public function setTypeutilisateur(?TypeUtilisateur $typeutilisateur): self
     {
         $this->typeutilisateur = $typeutilisateur;
+
+        return $this;
+    }
+
+    public function getCp(): ?int
+    {
+        return $this->cp;
+    }
+
+    public function setCp(?int $cp): self
+    {
+        $this->cp = $cp;
 
         return $this;
     }

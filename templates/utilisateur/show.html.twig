@@ -1,42 +1,95 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Utilisateur{% endblock %}
+{% block title %}utilisateur
+{% endblock %}
 
 {% block body %}
-    <h1>Utilisateur</h1>
+	{{include("sidebar.html.twig")}}
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ utilisateur.id }}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ utilisateur.nom }}</td>
-            </tr>
-            <tr>
-                <th>Prenom</th>
-                <td>{{ utilisateur.prenom }}</td>
-            </tr>
-            <tr>
-                <th>Telephone</th>
-                <td>{{ utilisateur.telephone }}</td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td>{{ utilisateur.email }}</td>
-            </tr>
-            <tr>
-                <th>Adresse</th>
-                <td>{{ utilisateur.adresse }}</td>
-            </tr>
-        </tbody>
-    </table>
 
-    <a href="{{ path('utilisateur_index') }}">back to list</a>
+	<div class="home_content" style="margin-top:200px; height: 100%;">
 
-    <a href="{{ path('utilisateur_edit', {'id': utilisateur.id}) }}">edit</a>
 
-    {{ include('utilisateur/_delete_form.html.twig') }}
+		<h1>utilisateur</h1>
+
+		{{ include('utilisateur/_delete_form.html.twig') }}
+
+		<table class="table table-bordered table-white" style="width:900px; border:solid 1px; margin-right:auto; margin-left:auto;">
+			<thead>
+
+
+				<div style="width:900px;height:80px; background-color:#eee;margin-right:auto; margin-left:auto">
+					<center>
+
+						<a href="{{ path('utilisateur_index') }}">
+							<button class="btn btn-outline-secondary" style="color:black;border:solid 1px;width:900px;height:80px;margin-right:auto; margin-left:auto">
+								<h1>Back to list</h1>
+							</button>
+						</a>
+
+					</center>
+				</div>
+
+				<div style="width:900px;height:60px; margin-right:auto; margin-left:auto">
+
+
+					<a href="{{ path('utilisateur_edit', {'id': utilisateur.id}) }}">
+						<button class="btn btn-outline-success" style="width:450px;height:60px;margin-right:auto; margin-left:auto">
+							<h1>Edit</h1>
+						</button>
+					</a>
+
+					<a href="{{ path('utilisateur_delete', {'id': utilisateur.id}) }}">
+						<button class="btn btn-outline-danger" style="width:445px;height:60px;margin-right:auto; margin-left:auto">
+							<h1>Delete</h1>
+						</button>
+					</a>
+
+
+				</div>
+
+				<tr>
+					<th scope="col">Information</th>
+					<th scope="col" style="width:200px;">Details</th>
+
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr>
+					<th>Id</th>
+					<td>{{ utilisateur.id }}</td>
+				</tr>
+				<tr>
+					<th>Nom</th>
+					<td>{{ utilisateur.nom }}</td>
+				</tr>
+				<tr>
+					<th>Prenom</th>
+					<td>{{ utilisateur.prenom }}</td>
+				</tr>
+				<tr>
+					<th>Telephone</th>
+					<td>{{ utilisateur.telephone }}</td>
+				</tr>
+				<tr>
+					<th>Email</th>
+					<td>{{ utilisateur.email }}</td>
+				</tr>
+				<tr>
+					<th>Adresse</th>
+					<td>{{ utilisateur.adresse }}</td>
+				</tr>
+			</tbody>
+		</table>
+
+		{# <a href="{{ path('utilisateur_index') }}">back to list</a>
+																				
+																						<a href="{{ path('utilisateur_edit', {'id': utilisateur.id}) }}">edit</a>
+																				
+																						
+																				 #}
+	</div>
+
+
 {% endblock %}

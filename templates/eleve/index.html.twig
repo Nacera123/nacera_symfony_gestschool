@@ -1,42 +1,65 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Eleve index{% endblock %}
+{% block title %}Eleve index
+{% endblock %}
 
 {% block body %}
-    {{include("sidebar.html.twig")}}
-    <div class="home_content" id ="classes">
-        <h1>Eleve index</h1>
+	{{include("sidebar.html.twig")}}
+	<style>
+		body {
+			background-color: #eee;
+		}
+	</style>
 
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Nom</th>
-                    <th>Prenom</th>
-                    <th>Date_de_naissance</th>
-                    <th>actions</th>
-                </tr>
-            </thead>
-            <tbody>
-            {% for eleve in eleves %}
-                <tr>
-                    <td>{{ eleve.id }}</td>
-                    <td>{{ eleve.nom }}</td>
-                    <td>{{ eleve.prenom }}</td>
-                    <td>{{ eleve.dateDeNaissance ? eleve.dateDeNaissance|date('Y-m-d H:i:s') : '' }}</td>
-                    <td>
-                        <a href="{{ path('eleve_show', {'id': eleve.id}) }}">show</a>
-                        <a href="{{ path('eleve_edit', {'id': eleve.id}) }}">edit</a>
-                    </td>
-                </tr>
-            {% else %}
-                <tr>
-                    <td colspan="5">no records found</td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
+	<div class="home_content" style="margin-top:200px; height: 100%;">
+		<h1>Eleve index</h1>
 
-        <a href="{{ path('eleve_new') }}">Create new</a>
-    </div>
+		<table class="table table-bordered table-white" style=" background-color:#fff;width:1100px; border:solid 1px; margin-right:auto; margin-left:auto;">
+			<thead>
+				<div style="width:1100px;height:80px; margin-right:auto; margin-left:auto">
+					<center>
+
+						<a href="{{ path('eleve_new') }}">
+							<button class="btn btn-outline-secondary" style=" width:1100px;height:80px;margin-right:auto; margin-left:auto; color:black;">
+								<h1>Create new</h1>
+							</button>
+						</a>
+
+					</center>
+				</div>
+
+				<tr>
+					<th>Id</th>
+					<th>Nom</th>
+					<th>Prenom</th>
+					<th style="width:300px;">Date_de_naissance</th>
+					<th style="width:250px;">actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for eleve in eleves %}
+					<tr>
+						<td>{{ eleve.id }}</td>
+						<td>{{ eleve.nom }}</td>
+						<td>{{ eleve.prenom }}</td>
+						<td>{{ eleve.dateDeNaissance ? eleve.dateDeNaissance|date('Y-m-d H:i:s') : '' }}</td>
+						<td>
+							<a href="{{ path('eleve_show', {'id': eleve.id}) }}">
+								<button type="button" class="btn btn-outline-info" style="width:90px;">show</button>
+							</a>
+							<a href="{{ path('eleve_edit', {'id': eleve.id}) }}">
+								<button type="button" class="btn btn-outline-warning" style="width:90px;">edit</button>
+							</a>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="5">no records found</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+
+		{# <a href="{{ path('eleve_new') }}">Create new</a> #}
+	</div>
 {% endblock %}

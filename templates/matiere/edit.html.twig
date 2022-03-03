@@ -1,13 +1,31 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Matiere{% endblock %}
+{% block title %}Edit Matiere
+{% endblock %}
 
 {% block body %}
-    <h1>Edit Matiere</h1>
+	{{include("sidebar.html.twig")}}
 
-    {{ include('matiere/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('matiere_index') }}">back to list</a>
+	<div class="home_content" style="margin-top:200px; height: 100%;">
 
-    {{ include('matiere/_delete_form.html.twig') }}
-{% endblock %}
+		<h1>Edit Matiere</h1>
+		<div style="width:900px;height:80px; background-color:#eee;margin-right:auto; margin-left:auto">
+			<center>
+
+				<a href="{{ path('matiere_index') }}">
+					<button class="btn" style="border:solid 1px;width:900px;height:80px;margin-right:auto; margin-left:auto">
+						<h1>back to list</h1>
+					</button>
+				</a>
+
+			</center>
+		</div>
+		<div class="table table-bordered table-white" style="width:900px; border:solid 1px; margin-right:auto; margin-left:auto;">
+
+			{{ include('matiere/_form.html.twig', {'button_label': 'Update'}) }}
+		</div>
+
+
+		{{ include('matiere/_delete_form.html.twig') }}
+	{% endblock %}

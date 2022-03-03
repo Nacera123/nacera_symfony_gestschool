@@ -1,13 +1,92 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Utilisateur{% endblock %}
+{% block title %}Edit Utilisateur
+{% endblock %}
 
 {% block body %}
-    <h1>Edit Utilisateur</h1>
+	{# {{ include('utilisateur/_form.html.twig', {'button_label': 'Update'}) }}
+																																							
+																																								<a href="{{ path('utilisateur_index') }}">back to list</a>
+																																							
+																																								{{ include('utilisateur/_delete_form.html.twig') }} #}
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Document</title>
+		<link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+	</head>
 
-    {{ include('utilisateur/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('utilisateur_index') }}">back to list</a>
+	<style>
+		body {
+			background-color: #eee;
+		}
+	</style>
 
-    {{ include('utilisateur/_delete_form.html.twig') }}
+	{{include("sidebar.html.twig")}}
+	<div class="home_content" style="margin-top:200px; height: 100%;overflow-x: scroll;">
+
+		<h1>Edit Utilisateur</h1>
+
+
+		<center>
+			{# {{ path('utilisateur_show', {'id': user.id}) }} #}
+			<a href="{{ path('utilisateur_show', {'id': utilisateur.id}) }}">
+				<button class="btn btn-outline-secondary" style=" width:900px;height:70px;margin-right:auto; margin-left:auto; color:black;">
+					<h1>back to list</h1>
+				</button>
+			</a>
+
+		</center>
+
+		<div class="register_contenent">
+			<div class="div_register">
+				<form class="row g-3" method="post">
+					<div class="col-md-6">
+						<i class="fa-solid fa-address-book fa-lg me-3 fa-fw"></i>
+						<label for="{{user.nom.vars.id}}">Nom</label>
+						<input type="text" value="{{user.nom.vars.value}}" class="form-control" id="{{user.nom.vars.id}}" name="{{user.nom.vars.full_name}}"/>
+					</div>
+					<div class="col-md-6">
+						<i class="fa-solid fa-address-book fa-lg me-3 fa-fw"></i>
+						<label for="{{user.prenom.vars.id}}">Prenom</label>
+						<input type="text" class="form-control" value="{{user.prenom.vars.value}}" id="{{user.prenom.vars.id}}" name="{{user.prenom.vars.full_name}}"/>
+					</div>
+					<div class="col-md-6">
+						<i class="fa-solid fa-square-phone-flip fa-lg me-3 fa-fw"></i>
+						<label class="form-label" for="{{user.telephone.vars.id}}">Numero de Telephone</label>
+						<input type="text" class="form-control" value="{{user.telephone.vars.value}}" id="{{user.telephone.vars.id}}" name="{{user.telephone.vars.full_name}}"/>
+					</div>
+					<div class="col-md-6">
+						<i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+						<label class="form-label" for="{{user.email.vars.id}}">
+							Email</label>
+						<input type="email" value="{{user.email.vars.value}}" id="{{user.email.vars.id}}" class="form-control" name="{{user.email.vars.full_name}}"/>
+					</div>
+					<div class="col-12">
+						<i class="fa-solid fa-house-laptop fa-lg me-3 fa-fw"></i>
+						<label class="form-label" for="{{user.adresse.vars.id}}">Adresse</label>
+						<input type="text" value="{{user.adresse.vars.value}}" id="{{user.adresse.vars.id}}" class="form-control" name="{{user.adresse.vars.full_name}}"/>
+					</div>
+
+					<div class="col-md-6">
+						<label for="{{user.cp.vars.id}}" class="form-label">Code Postal</label>
+						<input type="text" class="form-control" value="{{user.cp.vars.value}}" id="{{user.cp.vars.id}} name=" "{{user.cp.vars.id}}">
+					</div>
+
+					<div class="col-md-6">
+						{{form_label(user.typeutilisateur,null, { 'label_attr': {'class': 'form-label'} })}}
+						{{form_widget(user.typeutilisateur)}}
+					</div>
+					{{form_row(user._token)}}
+					<button type="submit" class="btn btn-outline-primary" style="width:200px; margin-left:auto;margin-right:auto;height:55px;">Register</button>
+				</form>
+			</div>
+		</div>
+
+
+	</div>
 {% endblock %}

@@ -1,11 +1,179 @@
 {% extends 'base.html.twig' %}
+{# <div class="form-check">
+	<input class="form-check-input" type="checkbox" id="gridCheck">
+	<label class="form-check-label" for="gridCheck">
+		Check me out
+	</label>
+</div>#}
 
-{% block title %}New Utilisateur{% endblock %}
+{% block title %}New Utilisateur
+{% endblock %}
 
 {% block body %}
-    <h1>Create new Utilisateur</h1>
 
-    {{ include('utilisateur/_form.html.twig') }}
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Document</title>
+		<!--boxicons CDN -->
+		<link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+	</head>
 
-    <a href="{{ path('utilisateur_index') }}">back to list</a>
-{% endblock %}
+
+	<style>
+		body {
+			background-color: #eee;
+		}
+	</style>
+
+	{{include("sidebar.html.twig")}}
+	<div class="home_content" style="margin-top:200px; height: 100%;overflow-x: scroll;">
+
+		<h1>Create new Utilisateur</h1>
+		{% for flashError in app.flashes('verify_email_error') %}
+			<div class="alert alert-danger" role="alert">{{ flashError }}</div>
+		{% endfor %}
+
+		{% for identifiant in app.flashes('identifiant') %}
+			<div class="alert alert-info" role="alert">
+				Identifiant :
+				{{ identifiant }}</div>
+		{% endfor %}
+
+		{% for password in app.flashes('password') %}
+			<div class="alert alert-info" role="alert">Mot de Passe :
+				{{ password  }}</div>
+		{% endfor %}
+
+
+		{# {{ include('utilisateur/_form.html.twig') }} #}
+
+		{# <div style="margin-right:auto;margin-left:auto; background-color:black;width:900px;height:50px;">
+																																																																																																		<a href="{{ path('utilisateur_index') }}">
+																																																																																																			<button>back to list</button>
+																																																																																																		</a>
+																																																																																																	</div> #}
+		{% if is_granted('ROLE_Administrateur')%}
+			<center>
+
+				<a href="{{ path('utilisateur_index') }}">
+					<button class="btn btn-outline-secondary" style=" width:900px;height:70px;margin-right:auto; margin-left:auto; color:black;">
+						<h1>back to list</h1>
+					</button>
+				</a>
+
+			</center>
+
+			<div class="register_contenent">
+				<div class="div_register">
+					<form class="row g-3" method="post">
+						<h3>Je suis un texte qui s'affiche</h3>
+						<div class="col-md-6">
+							<i class="fa-solid fa-address-book fa-lg me-3 fa-fw"></i>
+							<label for="{{utilisateur.nom.vars.id}}">Nom</label>
+							<input type="text" class="form-control" id="{{utilisateur.nom.vars.id}}" name="{{utilisateur.nom.vars.full_name}}"/>
+						</div>
+						<div class="col-md-6">
+							<i class="fa-solid fa-address-book fa-lg me-3 fa-fw"></i>
+							<label for="{{utilisateur.prenom.vars.id}}">Prenom</label>
+							<input type="text" class="form-control" id="{{utilisateur.prenom.vars.id}}" name="{{utilisateur.prenom.vars.full_name}}"/>
+						</div>
+						<div class="col-md-6">
+							<i class="fa-solid fa-square-phone-flip fa-lg me-3 fa-fw"></i>
+							<label class="form-label" for="{{utilisateur.telephone.vars.id}}">Numero de Telephone</label>
+							<input type="text" class="form-control" id="{{utilisateur.telephone.vars.id}}" name="{{utilisateur.telephone.vars.full_name}}"/>
+						</div>
+						<div class="col-md-6">
+							<i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+							<label class="form-label" for="{{utilisateur.email.vars.id}}">
+								Email</label>
+							<input type="email" id="{{utilisateur.email.vars.id}}" class="form-control" name="{{utilisateur.email.vars.full_name}}"/>
+						</div>
+						<div class="col-12">
+							<i class="fa-solid fa-house-laptop fa-lg me-3 fa-fw"></i>
+							<label class="form-label" for="{{utilisateur.adresse.vars.id}}">Adresse</label>
+							<input type="text" id="{{utilisateur.adresse.vars.id}}" class="form-control" name="{{utilisateur.adresse.vars.full_name}}"/>
+						</div>
+
+						<div class="col-md-6">
+							<label for="{{utilisateur.cp.vars.id}}" class="form-label">Code Postal</label>
+							<input type="text" class="form-control" id="{{utilisateur.cp.vars.id}} name=" "{{utilisateur.cp.vars.id}}">
+						</div>
+
+						<div class="col-md-6">
+							{{form_label(utilisateur.typeutilisateur, {'class':'form-label'})}}
+							{{form_widget(utilisateur.typeutilisateur)}}
+						</div>
+						{{form_row(utilisateur._token)}}
+
+					</div>
+					<button type="submit" class="btn btn-outline-primary" style="width:200px; margin-left:auto;margin-right:auto;height:55px;">Register</button>
+				</form>
+			</div>
+		</div>
+
+	{% elseif is_granted('ROLE_Gestionnaire_Ecole')%}
+		<center>
+
+			<a href="{{ path('utilisateur_index') }}">
+				<button class="btn btn-outline-secondary" style=" width:900px;height:70px;margin-right:auto; margin-left:auto; color:black;">
+					<h1>back to list</h1>
+				</button>
+			</a>
+
+		</center>
+
+		<div class="register_contenent">
+			<div class="div_register">
+				<form class="row g-3" method="post">
+					<div class="col-md-6">
+						<i class="fa-solid fa-address-book fa-lg me-3 fa-fw"></i>
+						<label for="{{utilisateur.nom.vars.id}}">Nom</label>
+						<input type="text" class="form-control" id="{{utilisateur.nom.vars.id}}" name="{{utilisateur.nom.vars.full_name}}"/>
+					</div>
+					<div class="col-md-6">
+						<i class="fa-solid fa-address-book fa-lg me-3 fa-fw"></i>
+						<label for="{{utilisateur.prenom.vars.id}}">Prenom</label>
+						<input type="text" class="form-control" id="{{utilisateur.prenom.vars.id}}" name="{{utilisateur.prenom.vars.full_name}}"/>
+					</div>
+					<div class="col-md-6">
+						<i class="fa-solid fa-square-phone-flip fa-lg me-3 fa-fw"></i>
+						<label class="form-label" for="{{utilisateur.telephone.vars.id}}">Numero de Telephone</label>
+						<input type="text" class="form-control" id="{{utilisateur.telephone.vars.id}}" name="{{utilisateur.telephone.vars.full_name}}"/>
+					</div>
+					<div class="col-md-6">
+						<i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+						<label class="form-label" for="{{utilisateur.email.vars.id}}">
+							Email</label>
+						<input type="email" id="{{utilisateur.email.vars.id}}" class="form-control" name="{{utilisateur.email.vars.full_name}}"/>
+					</div>
+					<div class="col-12">
+						<i class="fa-solid fa-house-laptop fa-lg me-3 fa-fw"></i>
+						<label class="form-label" for="{{utilisateur.adresse.vars.id}}">Adresse</label>
+						<input type="text" id="{{utilisateur.adresse.vars.id}}" class="form-control" name="{{utilisateur.adresse.vars.full_name}}"/>
+					</div>
+
+					<div class="col-md-6">
+						<label for="{{utilisateur.cp.vars.id}}" class="form-label">Code Postal</label>
+						<input type="text" class="form-control" id="{{utilisateur.cp.vars.id}} name=" "{{utilisateur.cp.vars.id}}">
+					</div>
+
+
+					<div class="col-md-4">
+						<label for="inputState" class="form-label"></label>
+
+						{{form_row(utilisateur.typeutilisateur)}}
+						{{form_row(utilisateur._token)}}
+
+					</div>
+					<button type="submit" class="btn btn-outline-primary" style="width:200px; margin-left:auto;margin-right:auto;height:55px;">Register</button>
+				</form>
+			</div>
+		</div>
+	{% endif %}
+
+
+</div>{% endblock %}

@@ -1,43 +1,142 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Utilisateur index{% endblock %}
+{% block title %}Utilisateur index
+{% endblock %}
 
 {% block body %}
-    <h1>Utilisateur index</h1>
+	{{include("sidebar.html.twig")}}
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nom</th>
-                <th>Prenom</th>
-                <th>Telephone</th>
-                <th>Email</th>
-                <th>Adresse</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for utilisateur in utilisateurs %}
-            <tr>
-                <td>{{ utilisateur.id }}</td>
-                <td>{{ utilisateur.nom }}</td>
-                <td>{{ utilisateur.prenom }}</td>
-                <td>{{ utilisateur.telephone }}</td>
-                <td>{{ utilisateur.email }}</td>
-                <td>{{ utilisateur.adresse }}</td>
-                <td>
-                    <a href="{{ path('parent_show', {'id': utilisateur.id}) }}">show</a>
-                    <a href="{{ path('parent_edit', {'id': utilisateur.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="7">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+	<style>
+		body {
+			overflow-x: scroll;
+			background-color: #eee;
+		}
+	</style>
+	<div class="home_content" style="margin-top:200px; height: 100%;">
+		<h1>Utilisateur index</h1>
 
-    <a href="{{ path('parent_new') }}">Create new</a>
+		<table class="table table-bordered table-white" style="background-color:#fff;width:1440px; border:solid 1px; margin-right:auto; margin-left:auto;">
+			<thead>
+				<div style="width:1440px;height:130px; margin-right:auto; margin-left:auto">
+					<center>
+
+						<a href="{{ path('utilisateur_new') }}">
+							<button class="btn btn-outline-secondary" style=" width:1440px;height:70px;margin-right:auto; margin-left:auto; color:black;">
+								<h1>Create new</h1>
+							</button>
+						</a>
+
+					</center>
+					<div style="width:1440px;height:60px; margin-right:auto; margin-left:auto; border:solid 1px;">
+
+
+						<a href="{{path('utilisateur_index',{'role':'Famille'})}}">
+							<button class="btn btn-outline-info" style="width:170px;width:150px;height:50px;margin-right:auto; margin-left:auto">
+
+								Parent
+							</button>
+						</a>
+
+						<a href="{{path('utilisateur_index',{'role':'Enseignant'})}}">
+							<button class="btn btn-outline-info" style="width:170px;height:50px;margin-right:auto; margin-left:auto">
+								Enseignant
+							</button>
+						</a>
+
+
+					</div>
+				</div>
+
+
+				<tr>
+					{# <th>Id</th> #}
+					<th>Nom</th>
+					<th>Prenom</th>
+					<th>Telephone</th>
+					<th>Email</th>
+					<th>Adresse</th>
+					<th style="width:150px;">
+						Code Postal</th>
+
+					<th style="width:250px;">actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for utilisateur in utilisateurs %}
+					<tr>
+						{# <td>{{ utilisateur.id }}</td> #}
+						<td>{{ utilisateur.nom }}</td>
+						<td>{{ utilisateur.prenom}}</td>
+						<td>{{ utilisateur.telephone }}</td>
+						<td>{{ utilisateur.email}}</td>
+						<td>{{ utilisateur.adresse }}</td>
+						<td>{{ utilisateur.cp }}</td>
+
+						<td>
+							<a href="{{ path('utilisateur_show', {'id': utilisateur.id}) }}">
+								<button type="button" class="btn btn-outline-info" style="width:90px;">show</button>
+							</a>
+							<a href="{{ path('utilisateur_edit', {'id': utilisateur.id}) }}">
+								<button type="button" class="btn btn-outline-warning" style="width:90px;">edit</button>
+							</a>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="7">no records found</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+
+		{# <a href="{{ path('utilisateur_new') }}">Create new</a> #}
+		{# <a href="{{path('utilisateur_index',{'role':'Parent'})}}" class="Button">Parent</a>
+																														<a href="{{path('utilisateur_index',{'role':'Enseignant'})}}" class="Button">Enseignant</a> #}
+	</div>
 {% endblock %}
+
+
+{# {% extends 'base.html.twig' %}
+
+{% block title %}Utilisateur index
+{% endblock %}
+
+{% block body %}
+	<h1>Utilisateur index</h1>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Nom</th>
+				<th>Prenom</th>
+				<th>Telephone</th>
+				<th>Email</th>
+				<th>Adresse</th>
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for utilisateur in utilisateurs %}
+				<tr>
+					<td>{{ utilisateur.id }}</td>
+					<td>{{ utilisateur.nom }}</td>
+					<td>{{ utilisateur.prenom }}</td>
+					<td>{{ utilisateur.telephone }}</td>
+					<td>{{ utilisateur.email }}</td>
+					<td>{{ utilisateur.adresse }}</td>
+					<td>
+						<a href="{{ path('parent_show', {'id': utilisateur.id}) }}">show</a>
+						<a href="{{ path('parent_edit', {'id': utilisateur.id}) }}">edit</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="7">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<a href="{{ path('parent_new') }}">Create new</a>
+{% endblock %} #}

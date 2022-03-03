@@ -1,38 +1,62 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Classe index{% endblock %}
+{% block title %}Classe index
+{% endblock %}
 
 {% block body %}
-    {{include("sidebar.html.twig")}}
-    <div class="home_content" id ="classes">
-        <h1>Classe index</h1>
+	{{include("sidebar.html.twig")}}
 
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Salle</th>
-                    <th>actions</th>
-                </tr>
-            </thead>
-            <tbody>
-            {% for classe in classes %}
-                <tr>
-                    <td>{{ classe.id }}</td>
-                    <td>{{ classe.salle }}</td>
-                    <td>
-                        <a href="{{ path('classe_show', {'id': classe.id}) }}">show</a>
-                        <a href="{{ path('classe_edit', {'id': classe.id}) }}">edit</a>
-                    </td>
-                </tr>
-            {% else %}
-                <tr>
-                    <td colspan="3">no records found</td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
+	<style>
+		body {
+			background-color: #eee;
+		}
+	</style>
+	<div class="home_content" style="margin-top:200px; height: 100%;">
 
-        <a href="{{ path('classe_new') }}">Create new</a>
-    </div>
-{% endblock %}
+		<h1>Classe index</h1>
+
+		<table class="table table-bordered table-white" style="background-color:#fff;width:1000px; border:solid 1px; margin-right:auto; margin-left:auto;">
+			<thead>
+				<div style="width:1000px;height:80px;margin-right:auto; margin-left:auto">
+					<center>
+
+						<a href="{{ path('classe_new') }}">
+							<button class="btn btn-outline-secondary" style="color:black; width:1000px;height:80px; margin-right:auto; margin-left:auto;">
+								<h1>Create new</h1>
+							</button>
+						</a>
+
+					</center>
+				</div>
+
+				<tr>
+					{# <th>Id</th> #}
+					<th>Salle</th>
+					<th style="width:250px;">actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for classe in classes %}
+					<tr>
+						{# <td>{{ classe.id }}</td> #}
+						<td>{{ classe.salle }}</td>
+						<td>
+							<a href="{{ path('classe_show', {'id': classe.id}) }}">
+								<button type="button" class="btn btn-outline-info" style="width:90px;">show</button>
+							</a>
+							<a href="{{ path('classe_edit', {'id': classe.id}) }}">
+								<button type="button" class="btn btn-outline-warning" style="width:90px;">edit</button>
+							</a>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="3">no records found</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+
+		{# <a href="{{ path('classe_new') }}">Create new</a> #}
+	</div>
+</div>{% endblock %}

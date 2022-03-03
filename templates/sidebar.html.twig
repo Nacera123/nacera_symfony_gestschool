@@ -23,7 +23,7 @@
 
 					<div class="logo">
 						<i class='bx bxl-c-plus-plus'></i>
-						<div class="logo_name">CodingLab</div>
+						<div class="logo_name">Gest School</div>
 					</div>
 					<i class='bx bx-menu' id="btn"></i>
 
@@ -139,7 +139,8 @@
 
 
 			</div>
-			<div class="home_content" style="background-color:#eee;">
+			<div class="home_content">
+
 				<div id="navigation" class="mix-black-50">
 					<ul>
 						<li>
@@ -151,38 +152,45 @@
 						<li>
 							<a href="#contact">Contact</a>
 						</li>
-						<li
-							style="float:right" id="btn-login">
-							{# <a class="active" href="#about"> #}
-							<button type="button" onclick="tata();">{{app.user.utilisateur.email}}
+						<li style="float:right" id="btn-login">
+
+							<button type="button" class="mix-black-50" id="prof-il" onclick="tata();">
+								{{app.user.utilisateur.email}}
+
 								<i class="fa fa-caret-down"></i>
 							</button>
 
+						</li>
+					</ul>
 
-							{# </a> #}
-							<div class="drop_profile" id="pipi" style="margin-top:0px;">
-								<div class="profile">
-									<div class="profil_details">
-										<img src="https://instaboss.app/image/client-anonyme.png" alt="">
-										<div class="name_job">
-											<div class="name">{{app.user.utilisateur.nom}}</div>
-											<div class="job">Web designer</div>
-
-										</div>
-
-									</div>
-									<div class="log_out">
-										<div class="name">SignOut</div>
-										<a href="{{path('app_logout')}}">
-											<i class='bx bx-log-out' id="log_out"></i>
-										</a>
-									</div>
+				</div>
+				<div id="divactive" style=" display:none; float:right; margin-right:20px; height:100px; width:320px;background-color:#eee;">
+					<div class="profile">
+						<div class="profil_details">
+							<img src="https://instaboss.app/image/client-anonyme.png" alt="">
+							<div class="name_job">
+								<div class="name">
+									{{app.user.utilisateur.nom}}
+									{{app.user.utilisateur.prenom}}
+								</div>
+								<div class="job">
+									{{app.user.utilisateur.email}}
 								</div>
 							</div>
 
-						</li>
-					</ul>
+						</div>
+						<div class="log_out">
+							<div class="name">
+								SignOut
+								<a href="{{path('app_logout')}}">
+									<i class='bx bx-log-out' id="log_out"></i>
+								</a>
+							</div>
+						</div>
+					</div>
+
 				</div>
+
 
 			</div>
 
@@ -190,7 +198,7 @@
 		</body>
 		<script>
 			function tata() {
-var oui = document.getElementById("pipi")
+var oui = document.getElementById("divactive")
 if (oui.style.display === "none") {
 oui.style.display = "block";
 

@@ -15,10 +15,10 @@ class Evaluation1Type extends AbstractType
             ->add('devoirs')
             ->add('examen')
             ->add('moyenne')
+            ->add('appreciation')
             ->add('periode')
             ->add('matiere')
-            ->add('eleve')
-        ;
+            ->add('eleve');
     }
 
     public function configureOptions(OptionsResolver $resolver): void

@@ -5,34 +5,119 @@
 
 {% block body %}
 	{{include("sidebar.html.twig")}}
-	<div class="home_content" id="classes">
+
+	<style>
+		body {
+
+			background-color: #eee;
+		}
+	</style>
+	<div class="home_content" style="margin-top:200px; height: 100%;overflow-x: scroll;">
 		<h1>Utilisateur index</h1>
 
-		<table class="table">
+		<table class="table table-bordered table-white" style="background-color:#fff;width:1440px; border:solid 1px; margin-right:auto; margin-left:auto;">
 			<thead>
+				<div style="width:1440px;height:130px; margin-right:auto; margin-left:auto">
+					{%  if is_granted('ROLE_Gestionnaire_Ecole')%}
+						<center>
+
+							<a href="{{ path('new_utilisateur') }}">
+								<button class="btn btn-outline-secondary" style=" width:1440px;height:70px;margin-right:auto; margin-left:auto; color:black;">
+									<h1>Create new</h1>
+								</button>
+							</a>
+
+						</center>
+					{% endif %}
+					{% if is_granted('ROLE_Administrateur')%}
+						<center>
+
+							<a href="{{ path('utilisateur1_new') }}">
+								<button class="btn btn-outline-secondary" style=" width:1440px;height:70px;margin-right:auto; margin-left:auto; color:black;">
+									<h1>Create new</h1>
+								</button>
+							</a>
+
+						</center>
+					{% endif %}
+
+					<div style="width:1440px;height:60px; margin-right:auto; margin-left:auto; border:solid 1px;">
+						{% if is_granted('ROLE_Gestionnaire_Ecole') %}
+
+							<a href="{{path('utilisateur_index',{'role':'Famille'})}}">
+								<button class="btn btn-outline-info" style="width:170px;width:150px;height:50px;margin-right:auto; margin-left:auto">
+
+									Parent
+								</button>
+							</a>
+
+							<a href="{{path('utilisateur_index',{'role':'Enseignant'})}}">
+								<button class="btn btn-outline-info" style="width:170px;height:50px;margin-right:auto; margin-left:auto">
+									Enseignant
+								</button>
+							</a>
+						{% endif %}
+						{% if is_granted('ROLE_Administrateur') %}
+							<a href="{{path('utilisateur_index',{'role':'Gestionnaire_Ecole'})}}">
+								<button class="btn btn-outline-info" style="width:200px;height:50px;margin-right:auto; margin-left:auto">
+
+									Gestionnaire d'Ecole
+								</button>
+							</a>
+
+							<a href="{{path('utilisateur_index',{'role':'Administrateur'})}}">
+								<button class="btn btn-outline-info" style="width:170px;height:50px;margin-right:auto; margin-left:auto">
+									Adminisrateur
+								</button>
+							</a>
+						{% endif %}
+						<a href="{{path('utilisateur_index')}}">
+							<button class="btn btn-outline-info" style="float:right; margin-right:50px; width:350px; height:50px;">
+								retour a la liste d'Utilisateurs
+							</button>
+						</a>
+
+
+					</div>
+				</div>
+
+
 				<tr>
-					<th>Id</th>
+					{# <th>Id</th> #}
 					<th>Nom</th>
 					<th>Prenom</th>
 					<th>Telephone</th>
 					<th>Email</th>
 					<th>Adresse</th>
-					<th>actions</th>
+					<th style="width:150px;">
+						Code Postal</th>
+					{% if cequejemetsici != "ROLE_USER"  %}
+						<th style="width:250px;">actions</th>
+					{% endif %}
 				</tr>
 			</thead>
 			<tbody>
+				{# afficher l'instance utilisateurs#}
 				{% for utilisateur in utilisateurs %}
 					<tr>
-						<td>{{ utilisateur.id }}</td>
+						{# <td>{{ utilisateur.id }}</td> #}
 						<td>{{ utilisateur.nom }}</td>
 						<td>{{ utilisateur.prenom }}</td>
 						<td>{{ utilisateur.telephone }}</td>
 						<td>{{ utilisateur.email }}</td>
 						<td>{{ utilisateur.adresse }}</td>
-						<td>
-							<a href="{{ path('utilisateur_show', {'id': utilisateur.id}) }}">show</a>
-							<a href="{{ path('utilisateur_edit', {'id': utilisateur.id}) }}">edit</a>
-						</td>
+						<td>{{ utilisateur.cp }}</td>
+
+						{% if utilisateur.typeutilisateur.role == cequejemetsici  %}
+							<td>
+								<a href="{{ path('utilisateur_show', {'id': utilisateur.id}) }}">
+									<button type="button" class="btn btn-outline-info" style="width:90px;">show</button>
+								</a>
+								<a href="{{ path('utilisateur_edit', {'id': utilisateur.id}) }}">
+									<button type="button" class="btn btn-outline-warning" style="width:90px;">edit</button>
+								</a>
+							</td>
+						{% endif %}
 					</tr>
 				{% else %}
 					<tr>
@@ -42,8 +127,8 @@
 			</tbody>
 		</table>
 
-		<a href="{{ path('utilisateur_new') }}">Create new</a>
-		<a href="{{path('utilisateur_index',{'role':'Parent'})}}" class="Button">Parent</a>
-		<a href="{{path('utilisateur_index',{'role':'Enseignant'})}}" class="Button">Enseignant</a>
+		{# <a href="{{ path('utilisateur_new') }}">Create new</a> #}
+		{# <a href="{{path('utilisateur_index',{'role':'Parent'})}}" class="Button">Parent</a>
+																																																																																																																																																				<a href="{{path('utilisateur_index',{'role':'Enseignant'})}}" class="Button">Enseignant</a> #}
 	</div>
 {% endblock %}

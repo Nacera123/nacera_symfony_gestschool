@@ -1,34 +1,79 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Evaluation{% endblock %}
+{% block title %}Evaluation
+{% endblock %}
 
 {% block body %}
-    <h1>Evaluation</h1>
+	{{include("sidebar.html.twig")}}
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ evaluation.id }}</td>
-            </tr>
-            <tr>
-                <th>Devoirs</th>
-                <td>{{ evaluation.devoirs }}</td>
-            </tr>
-            <tr>
-                <th>Examen</th>
-                <td>{{ evaluation.examen }}</td>
-            </tr>
-            <tr>
-                <th>Moyenne</th>
-                <td>{{ evaluation.moyenne }}</td>
-            </tr>
-        </tbody>
-    </table>
+	<style>
+		body {
+			background-color: #eee;
+		}
+	</style>
 
-    <a href="{{ path('evaluation_index') }}">back to list</a>
+	<div class="home_content" style="margin-top:200px; height: 100%;">
 
-    <a href="{{ path('evaluation_edit', {'id': evaluation.id}) }}">edit</a>
+		<h1>Evaluation</h1>
 
-    {{ include('evaluation/_delete_form.html.twig') }}
-{% endblock %}
+		<table class="table table-bordered table-white" style="background-color:#fff;width:900px; border:solid 1px; margin-right:auto; margin-left:auto;">
+			<thead>
+
+
+				<div style="width:900px;height:80px; background-color:#eee;margin-right:auto; margin-left:auto">
+					<center>
+
+						<a href="{{ path('evaluation_index') }}">
+							<button class="btn" style="border:solid 1px;width:900px;height:80px;margin-right:auto; margin-left:auto">
+								<h1>back to list</h1>
+							</button>
+						</a>
+
+					</center>
+				</div>
+
+				<div style="width:900px;height:60px; margin-right:auto; margin-left:auto">
+
+
+					<a href="{{ path('evaluation_edit', {'id': evaluation.id}) }}">
+						<button class="btn btn-outline-success" style="width:900px;height:60px;margin-right:auto; margin-left:auto">
+							<h1>Edit</h1>
+						</button>
+					</a>
+
+
+				</div>
+
+				<tr>
+					<th scope="col">Information</th>
+					<th scope="col" style="width:200px;">Details</th>
+
+				</tr>
+			</thead>
+
+			<tbody>
+				{# <tr>
+									<th>Id</th>
+									<td>{{ evaluation.id }}</td>
+								</tr> #}
+				<tr>
+					<th>Devoirs</th>
+					<td>{{ evaluation.devoirs }}</td>
+				</tr>
+				<tr>
+					<th>Examen</th>
+					<td>{{ evaluation.examen }}</td>
+				</tr>
+				<tr>
+					<th>Moyenne</th>
+					<td>{{ evaluation.moyenne }}</td>
+				</tr>
+			</tbody>
+		</table>
+
+		{# <a href="{{ path('evaluation_index') }}">back to list</a>
+		
+				<a href="{{ path('evaluation_edit', {'id': evaluation.id}) }}">edit</a> #}
+
+		{{ include('evaluation/_delete_form.html.twig') }}
+	{% endblock %}
